@@ -53,14 +53,34 @@ Depois abra <http://localhost:8000>. Também dá para abrir o `index.html` diret
 
 O repositório é público e o site é estático: para publicar, é só habilitar o GitHub Pages em **Settings → Pages → Deploy from a branch → `main` / `/ (root)`**. Não há pipeline de build nem variáveis de ambiente.
 
+Depois de publicar, atualize `og:image` e `twitter:image` no `<head>` para a URL absoluta da imagem (os robôs de redes sociais preferem URLs completas; enquanto isso, os valores relativos funcionam em navegador).
+
+## Favicon e metadados
+
+O favicon é um quadrado verde-água com um cartão de papel inclinado e dois "apps" — coral (disponível) e azul-marinho (em breve). A fonte vetorial está em `icons/favicon.svg`; as versões PNG e o `.ico` foram geradas a partir dela.
+
+O `<head>` traz:
+
+- `description`, `author`, `theme-color` (`#0fa3b1`), `color-scheme` e `robots`;
+- Open Graph (`og:title`, `og:description`, `og:image` 1200×630, `og:locale` `pt_BR`);
+- Twitter/X (`summary_large_image`);
+- links de ícone para SVG, ICO, PNG 16/32 e `apple-touch-icon` 180.
+
 ## Estrutura do projeto
 
 ```text
 .
-├── index.html                 # página única com os links dos apps
+├── index.html                 # página única com os links dos apps e o <head> completo
 ├── style.css                  # paleta, cartão de papel e animações
+├── icons/
+│   ├── favicon.svg            # fonte vetorial do ícone
+│   ├── favicon.ico            # fallback para navegadores antigos
+│   ├── favicon-16.png         # aba do navegador (telas de alta densidade)
+│   ├── favicon-32.png         # aba do navegador
+│   └── apple-touch-icon-180.png
 └── src/
-    ├── paper01.png            # textura usada no cartão
+    ├── paper01.png            # textura usada no cartão e na imagem de compartilhamento
+    ├── og-image.png           # preview 1200×630 para redes sociais
     ├── paper02.png            # textura escura (reserva, não usada hoje)
     ├── screenshot-light.png   # captura do To Do List (não exibida aqui)
     └── screenshot-dark.png    # captura do To Do List (não exibida aqui)
